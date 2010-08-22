@@ -1,12 +1,13 @@
 #!/usr/bin/env ruby
 
+# This is the script we used to use to deal with converting things to mov files
+
 DIR         = ARGV[0].sub /\/$/, ''
 INPUT_DIR   = "#{DIR}"
 STAGING_DIR = "#{DIR}/../Staging"
 VIDEO_DIR   = "#{DIR}/../Video"
 MUSIC_DIR   = "#{DIR}/../Music"
 OTHER_DIR   = "#{DIR}/../Other"
-
 
 MUX_MOVIE = 'Resources/muxmovie'
 NOTHING   = 'Resources/nothing.mov'

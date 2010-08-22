@@ -27,6 +27,12 @@ def move_file(in_file, from_dir, to_dir)
   new_file
 end
 
+
+# delete all the empty directories out of the dir
+def clean_dir(dir)
+  Dir.glob(File.join(dir, '*')).each {|d| clean_dir(d); Dir.rmdir(d) rescue nil}
+end
+
 def stage_file(in_file)
   move_file(in_file, INPUT_DIR, STAGING_DIR)
 end
@@ -44,7 +50,13 @@ def convert_file(in_file)
   out_file
 end
 
-# delete all the empty directories out of the dir
-def clean_dir(dir)
-  Dir.glob(File.join(dir, '*')).each {|d| clean_dir(d); Dir.rmdir(d) rescue nil}
+def convert_mov_to_mp4(in_file, in_dir, out_dir)
+  out_file = clone_path(in_file, in_dir, out_dir, '.mp4')
+  puts "Converting #{in_file} => #{out_file}"  
+  
+  args = "-map 0:2 -map 0:3 -acodec libfaac -vcodec libx264 -vpre default -f mp4 -map_meta_data 0:0"
+  %x[#{FFMPEG} -i "#{in_file}" #{args} "#{out_file}" 2>&1]
+  
+  out_file
 end
+
