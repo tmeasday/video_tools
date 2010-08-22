@@ -1,0 +1,12 @@
+To run the mov -> mp4 converter, run
+
+	./convert_mp4.rb BASE_DIR INPUT_DIR
+
+and it will convert all files in INPUT_DIR, placing them in a mp4 folder relative to BASE_DIR
+
+e.g.
+
+	./convert_mp4.rb /Volumes/Data/Library/ /Volumes/Data/Library/TV\ Shows
+
+or
+	./convert_mp4.rb /Volumes/Data/Library/ /Volumes/Data/Library/TV\ Shows/The\ Wire/Season\ Two
